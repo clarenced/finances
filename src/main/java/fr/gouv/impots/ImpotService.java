@@ -2,13 +2,13 @@ package fr.gouv.impots;
 
 public class ImpotService {
 
+    private final PourcentageImpotsVisitor pourcentageImpotsVisitor;
 
-    public int calculImpots(Entreprise autoEntreprise) {
-        if(autoEntreprise instanceof AutoEntreprise){
-            return (autoEntreprise.getChiffreAffaire() * 25) / 100;
-        } else if( autoEntreprise instanceof SocieteActionSimplifies){
-            return (autoEntreprise.getChiffreAffaire() * 33) / 100;
-        }
-        throw new RuntimeException("Type d'entreprise inconnue");
+    public ImpotService(PourcentageImpotsVisitor pourcentageImpotsVisitor) {
+        this.pourcentageImpotsVisitor = pourcentageImpotsVisitor;
+    }
+
+    public int calculImpots(Entreprise entreprise) {
+        return entreprise.accept(pourcentageImpotsVisitor);
     }
 }
