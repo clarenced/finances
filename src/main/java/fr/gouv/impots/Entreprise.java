@@ -1,6 +1,6 @@
 package fr.gouv.impots;
 
-public abstract class Entreprise {
+public class Entreprise {
 
     private final String siret;
     private final String denomination;
@@ -11,8 +11,6 @@ public abstract class Entreprise {
         this.denomination = denomination;
         this.chiffreAffaire = chiffreAffaire;
     }
-
-    protected abstract int accept(PourcentageImpotsVisitor pourcentageImpotsVisitor);
 
     public String getSiret() {
         return siret;
